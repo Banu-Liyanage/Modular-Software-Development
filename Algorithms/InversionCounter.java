@@ -51,7 +51,9 @@ public class InversionCounter {
                 temp[k++] = arr[i++];
             } else {
                 temp[k++] = arr[j++];
-                count += (mid - i + 1);  // Count inversions
+                count += (mid - i + 1);  // Count inversions 
+                //here since the array is sorted all elements from arr[i] to the middle are greater than LHS
+                // thus we include all of them in the counter
             }
         }
 
