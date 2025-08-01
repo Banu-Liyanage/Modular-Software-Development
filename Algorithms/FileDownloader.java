@@ -9,10 +9,10 @@ public class FileDownloader {
         String savePath = "IntegerArray.txt";
 
         try {
-            URI uri = URI.create(fileURL);
-            HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection();
+            URI uri = URI.create(fileURL);  //used this instead of url depreciated method //URI means Uniform Resource Identifier 
+            HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection(); 
 
-            // 👇 Set a User-Agent to avoid 403 error
+            //  Set a User-Agent to avoid 403 error, used this because it failed in trial 1 
             connection.setRequestProperty("User-Agent", "Mozilla/5.0");
 
             try (BufferedInputStream in = new BufferedInputStream(connection.getInputStream());
@@ -21,11 +21,11 @@ public class FileDownloader {
                 byte[] buffer = new byte[1024];
                 int bytesRead;
 
-                while ((bytesRead = in.read(buffer, 0, 1024)) != -1) {
+                while ((bytesRead = in.read(buffer, 0, 1024)) != -1) { // we write the input data stream to the buffer until bytesRead is finished
                     fileOutputStream.write(buffer, 0, bytesRead);
                 }
 
-                System.out.println(" File downloaded successfully to: " + savePath);
+                System.out.println("File downloaded successfully to:" + savePath);
             }
         } catch (IOException e) {
             System.err.println(" Download failed: " + e.getMessage());
