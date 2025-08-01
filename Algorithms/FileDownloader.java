@@ -1,6 +1,7 @@
 import java.io.*;
 import java.net.HttpURLConnection;
-import java.net.URL;
+import java.net.URI;
+
 
 public class FileDownloader {
     public static void main(String[] args) {
@@ -8,8 +9,8 @@ public class FileDownloader {
         String savePath = "IntegerArray.txt";
 
         try {
-            URL url = new URL(fileURL);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            URI uri = URI.create(fileURL);
+            HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection();
 
             // 👇 Set a User-Agent to avoid 403 error
             connection.setRequestProperty("User-Agent", "Mozilla/5.0");
